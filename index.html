@@ -1,0 +1,704 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Streamline - EDITING SIMPLIFIED</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .animate-in {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #fff, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-text p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-visual {
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+            margin-bottom: 40px;
+        }
+
+        .demo-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .demo-video {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #1e293b, #334155);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-video::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .cta-form {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease-out 0.4s both;
+            justify-content: center;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .email-input {
+            flex: 1;
+            padding: 18px 20px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+        }
+
+        .email-input:focus {
+            outline: none;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta-button {
+            padding: 18px 30px;
+            background: linear-gradient(45deg, #10b981, #06d6a0);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(16, 185, 129, 0.4);
+            animation: pulse 0.6s ease-in-out;
+        }
+
+        .social-proof {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.1);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        .section:nth-child(odd) {
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 60px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Problem Section */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .problem-list {
+            list-style: none;
+        }
+
+        .problem-list li {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            padding-left: 40px;
+            position: relative;
+            color: #dc2626;
+        }
+
+        .problem-list li::before {
+            content: '✗';
+            position: absolute;
+            left: 0;
+            font-size: 1.5rem;
+            color: #dc2626;
+        }
+
+        .problem-visual {
+            background: linear-gradient(135deg, #fef2f2, #fee2e2);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            border: 2px solid #fecaca;
+        }
+
+        /* Solution Section */
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .solution-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .solution-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+
+        .solution-card p {
+            font-size: 1.1rem;
+            color: #64748b;
+        }
+
+        /* Process Visual */
+        .process-flow {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin: 60px 0;
+            flex-wrap: wrap;
+        }
+
+        .process-step {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            min-width: 150px;
+            transition: transform 0.3s ease;
+        }
+
+        .process-step:hover {
+            transform: scale(1.05);
+        }
+
+        .process-arrow {
+            font-size: 2rem;
+            color: #667eea;
+        }
+
+        /* Target Audience */
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .audience-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .audience-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Social Proof */
+        .social-proof-section {
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            background: linear-gradient(135deg, #1e293b, #334155);
+            color: white;
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-size: 3rem;
+            margin-bottom: 40px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .problem-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-form {
+                flex-direction: column;
+            }
+
+            .process-flow {
+                flex-direction: column;
+            }
+
+            .process-arrow {
+                transform: rotate(90deg);
+            }
+
+            .social-proof {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .fade-in-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-visual">
+                    <div class="demo-container">
+                        <div class="demo-video">
+                            🎬 Demo Coming Soon
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-text">
+                    <h1>EDITING SIMPLIFIED</h1>
+                    <p>The future of effortless editing is around the corner — join the waitlist today.</p>
+                    
+                    <form class="cta-form" onsubmit="handleSubmit(event)">
+                        <input type="email" class="email-input" placeholder="Enter your email" required>
+                        <button type="submit" class="cta-button">Join the Waitlist</button>
+                    </form>
+                    
+                    <div class="social-proof">
+                        <span>Trusted by creators worldwide</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title fade-in-on-scroll">The Problem Every Creator Faces</h2>
+            <div class="problem-grid">
+                <div class="fade-in-on-scroll">
+                    <ul class="problem-list">
+                        <li>Editing takes hours you could spend creating</li>
+                        <li>Hiring editors is expensive and inconsistent</li>
+                        <li>Deadlines get missed. Content suffers</li>
+                        <li>Technical skills required for professional results</li>
+                        <li>Burnout from repetitive, time-consuming tasks</li>
+                    </ul>
+                </div>
+                <div class="problem-visual fade-in-on-scroll">
+                    <h3 style="color: #dc2626; font-size: 2rem; margin-bottom: 20px;">⏰ The Time Trap</h3>
+                    <p style="color: #4b5563;">Creators spend 70% of their time editing instead of creating meaningful content that engages their audience</p>
+                    <div style="margin-top: 20px; padding: 20px; background: rgba(220, 38, 38, 0.1); border-radius: 12px;">
+                        <p style="color: #dc2626; font-weight: 600; margin-bottom: 8px;">Average Creator's Week:</p>
+                        <p style="color: #6b7280; font-size: 0.95rem;">28 hours editing • 12 hours creating • 0 hours for strategy</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title fade-in-on-scroll">How Streamline Helps You Win Back Time</h2>
+            
+            <div class="process-flow fade-in-on-scroll">
+                <div class="process-step">
+                    <div style="font-size: 2rem; margin-bottom: 10px;">📤</div>
+                    <strong>Upload</strong>
+                </div>
+                <div class="process-arrow">→</div>
+                <div class="process-step">
+                    <div style="font-size: 2rem; margin-bottom: 10px;">🤖</div>
+                    <strong>Auto Edit</strong>
+                </div>
+                <div class="process-arrow">→</div>
+                <div class="process-step">
+                    <div style="font-size: 2rem; margin-bottom: 10px;">📥</div>
+                    <strong>Download</strong>
+                </div>
+                <div class="process-arrow">→</div>
+                <div class="process-step">
+                    <div style="font-size: 2rem; margin-bottom: 10px;">🚀</div>
+                    <strong>Publish</strong>
+                </div>
+            </div>
+
+            <div class="solution-grid">
+                <div class="solution-card fade-in-on-scroll">
+                    <h3>🎯 AI-Powered Editing</h3>
+                    <p>Removes pauses, cuts silence, and adds captions automatically. Professional results in minutes, not hours.</p>
+                </div>
+                <div class="solution-card fade-in-on-scroll">
+                    <h3>🖼️ Smart Thumbnails</h3>
+                    <p>AI generates multiple thumbnail options based on your content. Choose the perfect one that drives clicks and engagement.</p>
+                </div>
+                <div class="solution-card fade-in-on-scroll">
+                    <h3>⚡ Consistent Quality</h3>
+                    <p>Professional-grade edits without the hiring hassle. Every video meets your standards, every time.</p>
+                </div>
+                <div class="solution-card fade-in-on-scroll">
+                    <h3>💰 Save Money</h3>
+                    <p>No monthly editor salaries or overpriced freelancers. Get professional results at a fraction of the cost.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Target Audience Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title fade-in-on-scroll">Built for Creators, Coaches, and Storytellers</h2>
+            <div class="audience-grid">
+                <div class="audience-card fade-in-on-scroll">
+                    <h3>📱 Content Creators</h3>
+                    <p>Who post daily and need quick turnarounds</p>
+                </div>
+                <div class="audience-card fade-in-on-scroll">
+                    <h3>👨‍🏫 Coaches & Educators</h3>
+                    <p>Who record webinars & courses regularly</p>
+                </div>
+                <div class="audience-card fade-in-on-scroll">
+                    <h3>🎙️ Podcasters</h3>
+                    <p>Who want polished videos fast without the hassle</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof Section -->
+    <section class="section social-proof-section">
+        <div class="container">
+            <h2 class="section-title fade-in-on-scroll">Trusted by Creators Worldwide</h2>
+            <div class="stats-grid">
+                <div class="stat-item fade-in-on-scroll">
+                    <div class="stat-number">10+</div>
+                    <p>Hours saved per week on average</p>
+                </div>
+                <div class="stat-item fade-in-on-scroll">
+                    <div class="stat-number">500K+</div>
+                    <p>Total audience reach of our beta users</p>
+                </div>
+                <div class="stat-item fade-in-on-scroll">
+                    <div class="stat-number">95%</div>
+                    <p>User satisfaction rate</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="section final-cta">
+        <div class="container">
+            <h2 class="fade-in-on-scroll">Your Time Is Precious. Spend It Creating.</h2>
+            
+            <form class="cta-form" onsubmit="handleSubmit(event)" style="max-width: 500px; margin: 0 auto;">
+                <input type="email" class="email-input" placeholder="Enter your email" required>
+                <button type="submit" class="cta-button">Join the Waitlist</button>
+            </form>
+            
+            <div style="margin-top: 30px;">
+                <button onclick="scrollToSection('solution')" style="background: none; border: 2px solid white; color: white; padding: 15px 30px; border-radius: 10px; cursor: pointer; transition: all 0.3s ease;">
+                    See How It Works
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <h3>Streamline</h3>
+            <p style="color: #94a3b8; margin: 10px 0;">Edit Less. Engage More.</p>
+            
+            <div class="footer-links">
+                <a href="#about">About</a>
+                <a href="#privacy">Privacy</a>
+                <a href="#contact">Contact</a>
+            </div>
+            
+            <p style="font-size: 0.9rem; color: #64748b; margin-top: 20px;">
+                © 2025 Streamline. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Handle form submissions
+        function handleSubmit(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('input[type="email"]').value;
+            alert(`Thanks for joining the waitlist! We'll be in touch at ${email}`);
+            event.target.reset();
+        }
+
+        // Smooth scroll function
+        function scrollToSection(sectionName) {
+            const sections = {
+                'solution': document.querySelector('.section:nth-child(3)')
+            };
+            if (sections[sectionName]) {
+                sections[sectionName].scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Scroll animations
+        function handleScrollAnimations() {
+            const elements = document.querySelectorAll('.fade-in-on-scroll');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Initialize scroll animations
+        window.addEventListener('scroll', handleScrollAnimations);
+        window.addEventListener('load', handleScrollAnimations);
+
+        // Add some interactive hover effects
+        document.querySelectorAll('.solution-card, .audience-card, .stat-item').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
