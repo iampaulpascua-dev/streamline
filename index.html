@@ -3,467 +3,286 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CutCraft AI - Drop Your Footage. Watch the Magic Happen.</title>
+    <title>CutCraft AI - The Future of Video Editing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
+        :root {
+            --primary-color: #6a00ff;
+            --secondary-color: #f3e8ff;
+            --dark-text: #1a1a1a;
+            --light-text: #ffffff;
+            --grey-text: #5a5a5a;
+            --border-color: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--light-text);
+            color: var(--dark-text);
             line-height: 1.6;
-            color: #1a1a1a;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            overflow-x: hidden;
         }
-        
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 20px;
         }
-        
-        /* Header */
-        header {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: white;
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-        
-        .logo img {
-            height: 40px;
-            width: auto;
-        }
-        
-        /* Hero Section */
-        .hero {
-            padding: 120px 0 80px;
-            text-align: center;
-            color: white;
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-            opacity: 0.3;
-            animation: float 20s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-        
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(45deg, #FFD700, #FF69B4);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-        
-        @keyframes glow {
-            from { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.3)); }
-            to { filter: drop-shadow(0 0 30px rgba(255, 105, 180, 0.4)); }
-        }
-        
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.9;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.6;
-        }
-        
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(135deg, #FF6B6B, #4ECDC4);
-            color: white;
-            padding: 18px 36px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-        
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s;
-        }
-        
-        .cta-button:hover::before {
-            left: 100%;
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-        
-        /* Main Content */
-        main {
-            background: white;
-            position: relative;
-            border-radius: 40px 40px 0 0;
-            margin-top: -40px;
-            z-index: 10;
-        }
-        
+
         .section {
             padding: 80px 0;
-        }
-        
-        .section h2 {
             text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 3rem;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
         }
-        
-        /* How It Works */
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .step {
-            text-align: center;
-            padding: 2rem;
-            border-radius: 20px;
-            background: linear-gradient(145deg, #f8fafc, #e2e8f0);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        /* Hero Section */
+        .hero {
+            background-color: var(--secondary-color);
             position: relative;
             overflow: hidden;
+            padding: 120px 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            color: var(--grey-text);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            background-color: #5a00d1;
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            padding: 80px 20px;
+            background-color: var(--light-text);
+        }
+
+        .how-it-works h2, .testimonials h2, .call-to-action h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 60px;
         }
         
-        .step::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #FF6B6B, #4ECDC4, #45B7D1);
+        .steps-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
         }
-        
+
+        .step {
+            flex: 1;
+            min-width: 250px;
+            max-width: 350px;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
         .step:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
-        
-        .step-number {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
+
+        .step .step-number {
+            font-size: 2rem;
             font-weight: 700;
-            margin: 0 auto 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
         }
-        
+
         .step h3 {
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             font-weight: 600;
-            margin-bottom: 1rem;
-            color: #2d3748;
+            margin: 10px 0;
         }
-        
+
         .step p {
-            color: #4a5568;
             font-size: 1rem;
+            color: var(--grey-text);
         }
-        
-        /* Benefits */
-        .benefits {
-            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+
+        /* Why Love Section */
+        .why-love {
+            padding: 80px 20px;
+            background-color: var(--secondary-color);
         }
-        
-        .benefit-grid {
+
+        .features-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
         }
-        
-        .benefit {
-            background: white;
-            padding: 1.5rem;
+
+        .feature-box {
+            background-color: var(--light-text);
+            padding: 30px;
             border-radius: 15px;
-            text-align: center;
+            text-align: left;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease;
-            border: 2px solid transparent;
-            background-clip: padding-box;
         }
         
-        .benefit:hover {
-            transform: scale(1.05);
-            border-color: rgba(102, 126, 234, 0.3);
+        .feature-box:hover {
+            transform: scale(1.03);
         }
-        
-        .benefit h4 {
+
+        .feature-box h4 {
+            font-size: 1.1rem;
             font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: #2d3748;
+            margin: 0 0 10px;
         }
-        
-        .benefit p {
-            color: #4a5568;
-            font-size: 0.9rem;
-        }
-        
-        /* Perfect For */
+
+        /* Perfect For Section */
         .perfect-for {
-            padding: 80px 0;
+            padding: 80px 20px;
         }
-        
-        .audience-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+
+        .perfect-for-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
         }
-        
-        .audience {
-            background: linear-gradient(145deg, #ffffff, #f1f5f9);
-            padding: 2rem;
-            border-radius: 20px;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 1px solid #e2e8f0;
+
+        .persona-box {
+            min-width: 250px;
+            max-width: 350px;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        
-        .audience:hover {
+
+        .persona-box:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
         }
-        
-        .audience-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+
+        .persona-box .emoji {
+            font-size: 2rem;
+            margin-bottom: 15px;
         }
-        
-        .audience h4 {
+
+        .persona-box h4 {
             font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: #2d3748;
+            margin: 0 0 10px;
         }
         
-        .audience p {
-            color: #4a5568;
+        .persona-box p {
+            font-size: 1rem;
+            color: var(--grey-text);
         }
-        
-        /* Testimonial */
-        .testimonial {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            text-align: center;
+
+        /* Testimonials Section */
+        .testimonials {
+            background-color: var(--secondary-color);
         }
-        
-        .testimonial blockquote {
-            font-size: 1.3rem;
-            font-style: italic;
-            margin-bottom: 1.5rem;
+
+        .testimonial-box {
             max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.6;
+            margin: 0 auto;
+            font-style: italic;
+            font-size: 1.25rem;
+            color: var(--dark-text);
+            position: relative;
         }
-        
-        .testimonial cite {
-            font-weight: 600;
-            opacity: 0.9;
+
+        .testimonial-box p {
+            margin-bottom: 10px;
         }
-        
-        /* Final CTA */
-        .final-cta {
-            background: #1a1a1a;
-            color: white;
+
+        .testimonial-box .author {
+            display: block;
             text-align: center;
-            padding: 100px 0;
+            font-size: 1rem;
+            font-style: normal;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-top: 20px;
         }
-        
-        .final-cta h2 {
-            color: white;
-            margin-bottom: 1rem;
+
+        /* Call to Action Section */
+        .call-to-action {
+            background-color: var(--primary-color);
+            color: var(--light-text);
         }
-        
-        .final-cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.9;
+
+        .call-to-action h2 {
+            color: var(--light-text);
+            margin-bottom: 20px;
         }
-        
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-                margin-bottom: 2rem;
-            }
-            
-            .section h2 {
-                font-size: 2rem;
-            }
-            
-            .steps {
-                grid-template-columns: 1fr;
-            }
-            
-            .benefit-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .audience-grid {
-                grid-template-columns: 1fr;
-            }
+
+        .call-to-action p {
+            font-size: 1.25rem;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin: 0 auto 40px;
         }
-        
-        .floating-elements {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            overflow: hidden;
-        }
-        
-        .floating-element {
-            position: absolute;
-            opacity: 0.1;
-            animation: floatUpDown 6s ease-in-out infinite;
-        }
-        
-        .floating-element:nth-child(1) {
-            top: 20%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-        
-        .floating-element:nth-child(2) {
-            top: 40%;
-            right: 15%;
-            animation-delay: 2s;
-        }
-        
-        .floating-element:nth-child(3) {
-            bottom: 30%;
-            left: 20%;
-            animation-delay: 4s;
-        }
-        
-        @keyframes floatUpDown {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-30px); }
+
+        .call-to-action .cta-button {
+            background-color: var(--light-text);
+            color: var(--primary-color);
         }
     </style>
 </head>
 <body>
-    <header>
+
+    <header class="hero section">
         <div class="container">
-            <div class="logo">
-                <img src="https://i.imgur.com/CutCraftAI.png" alt="CutCraft AI" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div class="logo-fallback" style="display:none; width: 40px; height: 40px; background: linear-gradient(45deg, #FF6B6B, #4ECDC4); border-radius: 8px; align-items: center; justify-content: center; font-size: 1.2rem;">✂️</div>
-                CutCraft AI
-            </div>
+            <h1>🎬 Drop Your Footage. Watch the Magic Happen.</h1>
+            <p>CutCraft AI edits your videos while you sip your coffee. Upload once — we’ll remove awkward pauses, clean up filler words, add captions, zooms, and even thumbnails.</p>
+            <a href="https://waitlist-form-mu.vercel.app/" class="cta-button">Get My Video Edited →</a>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="floating-elements">
-            <div class="floating-element">🎬</div>
-            <div class="floating-element">✂️</div>
-            <div class="floating-element">🚀</div>
-        </div>
-        <div class="container">
-            <div class="hero-content">
-                <h1>🎬 Drop Your Footage. Watch the Magic Happen.</h1>
-                <p>CutCraft AI edits your videos while you sip your coffee. Upload once — we'll remove awkward pauses, clean up filler words, add captions, zooms, and even thumbnails.</p>
-                <a href="#" class="cta-button">
-                    Join the Waitlist →
-                </a>
-            </div>
-        </div>
-    </section>
-
     <main>
-        <section class="section">
+        <section class="how-it-works section">
             <div class="container">
                 <h2>How It Works</h2>
-                <div class="steps">
+                <div class="steps-container">
                     <div class="step">
-                        <div class="step-number">1</div>
+                        <span class="step-number">1</span>
                         <h3>Upload Your Raw Video</h3>
                         <p>Drag, drop, done.</p>
                     </div>
                     <div class="step">
-                        <div class="step-number">2</div>
+                        <span class="step-number">2</span>
                         <h3>AI Auto-Edits Like a Pro</h3>
                         <p>Cuts silences, trims fluff, adds captions, auto-zooms for emphasis, and picks the best thumbnail.</p>
                     </div>
                     <div class="step">
-                        <div class="step-number">3</div>
+                        <span class="step-number">3</span>
                         <h3>Download & Share</h3>
                         <p>Your polished, ready-to-post video in minutes.</p>
                     </div>
@@ -471,46 +290,46 @@
             </div>
         </section>
 
-        <section class="section benefits">
+        <section class="why-love section">
             <div class="container">
                 <h2>Why Creators Love CutCraft AI</h2>
-                <div class="benefit-grid">
-                    <div class="benefit">
+                <div class="features-container">
+                    <div class="feature-box">
                         <h4>No more manual editing</h4>
                         <p>Save hours every week.</p>
                     </div>
-                    <div class="benefit">
+                    <div class="feature-box">
                         <h4>Polished every time</h4>
                         <p>Consistent, professional results.</p>
                     </div>
-                    <div class="benefit">
+                    <div class="feature-box">
                         <h4>Stress-free</h4>
                         <p>No software learning curve.</p>
                     </div>
-                    <div class="benefit">
+                    <div class="feature-box">
                         <h4>Fast turnaround</h4>
                         <p>Minutes, not days.</p>
                     </div>
                 </div>
             </div>
         </section>
-
-        <section class="section perfect-for">
+        
+        <section class="perfect-for section">
             <div class="container">
                 <h2>Perfect For</h2>
-                <div class="audience-grid">
-                    <div class="audience">
-                        <div class="audience-icon">🎥</div>
+                <div class="perfect-for-grid">
+                    <div class="persona-box">
+                        <span class="emoji">🎥</span>
                         <h4>Content Creators</h4>
                         <p>Post more without burning out.</p>
                     </div>
-                    <div class="audience">
-                        <div class="audience-icon">🎤</div>
+                    <div class="persona-box">
+                        <span class="emoji">🎤</span>
                         <h4>Coaches</h4>
                         <p>Turn your sessions into binge-worthy clips.</p>
                     </div>
-                    <div class="audience">
-                        <div class="audience-icon">🏢</div>
+                    <div class="persona-box">
+                        <span class="emoji">🏢</span>
                         <h4>Agencies</h4>
                         <p>Scale client work without extra editors.</p>
                     </div>
@@ -518,78 +337,25 @@
             </div>
         </section>
 
-        <section class="section testimonial">
+        <section class="testimonials section">
             <div class="container">
-                <blockquote>
-                    "I uploaded a 45-minute coaching call… CutCraft turned it into 12 snappy clips in under 10 minutes. Mind. Blown."
-                </blockquote>
-                <cite>– Jenna, Business Coach</cite>
+                <h2>What Our Users Say</h2>
+                <div class="testimonial-box">
+                    <p>“I uploaded a 45-minute coaching call… CutCraft turned it into 12 snappy clips in under 10 minutes. Mind. Blown.”</p>
+                    <span class="author">– Jenna, Business Coach</span>
+                </div>
             </div>
         </section>
 
-        <section class="final-cta">
+        <section class="call-to-action section">
             <div class="container">
                 <h2>Stop editing. Start creating.</h2>
                 <p>Let AI do the heavy lifting so you can focus on your message.</p>
-                <a href="#" class="cta-button">Join the Waitlist →</a>
+                <a href="https://waitlist-form-mu.vercel.app/" class="cta-button">Start Free Today →</a>
             </div>
         </section>
+
     </main>
 
-    <script>
-        // Add smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Add scroll effect to header
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-                header.style.backdropFilter = 'blur(20px)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.1)';
-                header.style.backdropFilter = 'blur(10px)';
-            }
-        });
-
-        // Add intersection observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe elements for animation
-        document.querySelectorAll('.step, .benefit, .audience').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
-        });
-    </script>
 </body>
 </html>
-            .hero {
-                padding: 100px 0 60px;
-            }
-            
-            .hero h1 {
-                font-size: 2.
